@@ -14,8 +14,11 @@ Using ruby execute
 
 ```
 $ ruby arabic2english.rb 202
+=> two hundred two
 
 or multiple..
 
 $ ruby arabic2english.rb 100 1001
+=> one hundred
+=> one thousand one
 ```
