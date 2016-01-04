@@ -22,3 +22,11 @@ $ ruby arabic2english.rb 100 1001
 => one hundred
 => one thousand one
 ```
+
+via Instance
+
+```
+$ translator = Arabic2English.new
+$ translator.translate!(101)
+=> one hundred one
+```
