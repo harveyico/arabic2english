@@ -1,4 +1,5 @@
 # Arabic2English Translator
+Currently it only supports up to millions, though adjustable depending what is the highest defined in `word_mapping.yml`
 
 ## Stack
 * ~> Ruby 2.1.2
