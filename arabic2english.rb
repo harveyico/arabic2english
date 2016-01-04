@@ -1,6 +1,7 @@
 class Arabic2English
   def base_numbers
     {
+      100 => 'hundred',
       90 => 'ninety',
       80 => 'eighty',
       70 => 'seventy',
@@ -39,9 +40,11 @@ class Arabic2English
     base_numbers.each do |num, text|
       if integer.to_s.length == 1 && integer/num > 0
         return result + text
-      elsif integer.to_s.length < 100 && integer/num > 0
+      elsif integer < 100 && integer/num > 0
         return result + text if integer%num == 0
         return result + text + ' ' + translate!(integer%num)
+      elsif integer/num > 0
+        return result + translate!(integer/num) + ' ' + text + ' ' + translate!(integer%num)
       end
     end
   end
