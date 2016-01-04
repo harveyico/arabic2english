@@ -21,6 +21,14 @@ describe Arabic2English do
       expect(arabic_to_english.translate!(171)).to eq 'one hundred seventy one'
     end
 
+    it 'translate arabic number of 1_000-999_999 into english' do
+      expect(arabic_to_english.translate!(165_321)).to eq 'one hundred sixty five thousand three hundred twenty one'
+    end
+
+    it 'translate arabic number of 1_000_000-999_999_999' do
+      expect(arabic_to_english.translate!(500_100_000)).to eq 'five hundred million one hundred thousand'
+    end
+
   end
 
 end

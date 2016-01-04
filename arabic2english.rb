@@ -7,18 +7,25 @@ class Arabic2English
     self.mapping ||= YAML.load_file(File.join(__dir__, 'word_mapping.yml'))
   end
 
-  def translate!(integer)
-    integer = integer.to_i
-    result = String.new
+  def translate!(i)
+    i = i.to_i
 
+    write_word(i)
+  end
+
+private
+  def write_word(i)
+    result = String.new
     mapping.each do |num, text|
-      if integer.to_s.length == 1 && integer/num > 0
-        return result + text
-      elsif integer < 100 && integer/num > 0
-        return result + text if integer%num == 0
-        return result + text + ' ' + translate!(integer%num)
-      elsif integer/num > 0
-        return result + translate!(integer/num) + ' ' + text + ' ' + translate!(integer%num)
+      if i.to_s.length == 1 && i/num > 0
+        return result + text # 1-9
+      elsif i < 100 && i/num > 0
+        return result + text if i%num == 0 # 10-20
+        return "#{result}#{text} #{translate!(i%num)}"
+      elsif i/num > 0
+        result = "#{result}#{translate!(i/num)} #{text}" # 100-so on..
+        result += " #{translate!(i%num)}" if i%num > 0
+        return result
       end
     end
   end
