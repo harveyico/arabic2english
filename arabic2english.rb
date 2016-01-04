@@ -1,7 +1,6 @@
 class Arabic2English
-  def whole_numbers
+  def base_numbers
     {
-      0 => 'zero',
       1 => 'one',
       2 => 'two',
       3 => 'three',
@@ -11,12 +10,7 @@ class Arabic2English
       7 => 'seven',
       8 => 'eight',
       9 => 'nine',
-      10 => 'ten'
-    }
-  end
-
-  def tenth_numbers
-    {
+      10 => 'ten',
       11 => 'eleven',
       12 => 'twelve',
       13 => 'thirteen',
@@ -25,18 +19,30 @@ class Arabic2English
       16 => 'sixteen',
       17 => 'seventeen',
       18 => 'eighteen',
-      19 => 'nineteen'
+      19 => 'nineteen',
+      20 => 'twenty',
+      30 => 'thiry',
+      40 => 'fourty',
+      50 => 'fifty',
+      60 => 'sixty',
+      70 => 'seventy',
+      80 => 'eighty',
+      90 => 'ninety'
     }
   end
 
-  def translate!(num)
-    num = num.to_i
 
-    if num <= 10
-      whole_numbers[num]
-    elsif num > 10 && num < 20
-      tenth_numbers[num]
+  def translate!(integer)
+    integer = integer.to_i
+    result = String.new
+
+    base_numbers.each do |num, text|
+      if integer.to_s.length == 1 && integer/num > 0
+        result += "#{text}"
+      end
     end
+
+    result
   end
 end
 
