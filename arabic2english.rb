@@ -8,7 +8,7 @@ class Arabic2English
   end
 
   def translate!(i)
-    i = i.to_i
+    i = Integer i rescue return "#{i} is not a valid number"
 
     write_word(i)
   end

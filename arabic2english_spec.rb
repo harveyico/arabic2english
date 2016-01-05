@@ -30,8 +30,11 @@ describe Arabic2English do
     end
 
     context 'errors when' do
+      it 'fails if the argument is not a number' do
+        expect(arabic_to_english.translate!('test')).to eq 'test is not a valid number'
+      end
+
       it 'fails if the argument is out of range'
-      it 'fails if the argument is not a number'
     end
 
   end
