@@ -29,6 +29,11 @@ describe Arabic2English do
       expect(arabic_to_english.translate!(500_100_000)).to eq 'five hundred million one hundred thousand'
     end
 
+    context 'errors when' do
+      it 'fails if the argument is out of range'
+      it 'fails if the argument is not a number'
+    end
+
   end
 
 end
