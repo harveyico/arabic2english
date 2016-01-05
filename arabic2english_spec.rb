@@ -34,7 +34,9 @@ describe Arabic2English do
         expect(arabic_to_english.translate!('test')).to eq 'test is not a valid number'
       end
 
-      it 'fails if the argument is out of range'
+      it 'fails if the argument is out of range' do
+        expect(arabic_to_english.translate!(1_000_000_000)).to eq '1000000000 is out of range'
+      end
     end
 
   end

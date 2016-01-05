@@ -1,16 +1,22 @@
 require 'yaml'
 
 class Arabic2English
-  attr_accessor :mapping
+  attr_accessor :mapping, :maximum_range
 
   def initialize
-    self.mapping ||= YAML.load_file(File.join(__dir__, 'word_mapping.yml'))
+    yaml= YAML.load_file(File.join(__dir__, 'word_mapping.yml'))
+    self.mapping ||= yaml['numbers']
+    self.maximum_range ||= yaml['settings']['maximum_range']
   end
 
   def translate!(i)
     i = Integer i rescue return "#{i} is not a valid number"
 
-    write_word(i)
+    if in_range(i)
+      write_word(i)
+    else
+      "#{i} is out of range"
+    end
   end
 
 private
@@ -28,6 +34,10 @@ private
         return result
       end
     end
+  end
+
+  def in_range(i)
+    i <= maximum_range
   end
 end
 
